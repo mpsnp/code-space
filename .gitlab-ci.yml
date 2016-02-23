@@ -1,0 +1,10 @@
+image: andystanton/gcc-cmake-gl
+build_code_space:
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+    - build/cspace
