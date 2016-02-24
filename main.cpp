@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 
     TCLAP::CmdLine cmd("Space Code --- source code visualisation tool", ' ', "0.1");
     TCLAP::SwitchArg fullScreenArg("f", "fullscreen", "Open in full screen window", cmd);
-    TCLAP::SwitchArg autosizeArg("", "autosize", "Use current resolution", cmd);
+    TCLAP::SwitchArg autosizeArg("a", "autosize", "Use current resolution", cmd);
     TCLAP::ValueArg<int> widthArg("W", "width", "Width of viewport", false, 640, "int", cmd);
     TCLAP::ValueArg<int> heightArg("H", "height", "Height of viewport", false, 480, "int", cmd);
     cmd.parse(argc, (const char *const *) argv);
