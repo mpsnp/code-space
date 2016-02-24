@@ -45,6 +45,7 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
 
+    // Start drawing loop
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
     glfwSetKeyCallback(window, key_callback);
