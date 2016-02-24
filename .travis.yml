@@ -2,13 +2,19 @@ language: cpp
 sudo: required
 dist: trusty
 compiler:
-  - clang
+- clang
 os:
-  - linux
-  - osx
-before_script:
-  - mkdir build
-  - cd build
-  - cmake ..
+- linux
+- osx
 script:
-  - make
+- mkdir build
+- cd build
+- cmake ..
+- make
+deploy:
+  provider: releases
+  api_key:
+    secure: m/92Er1xKdPSXl9+goGATqH5Fi1dB5dYdxEUEdcQV0te6D/t2rakxxFHkIcbitgTs5uza9ip4Bfar8HyhC/2qxKwICa2ct2JGdv+xtp9lZky3Ew+e0c7WmF0TzPx911V+fSwXMZucJakcMRdRGE2+Ui/gz9dtCMr/A2nDgObhXYb/vhI+rkUQVteR5+TXFE9TRZWfW74Q3or7pO+lhWDFuS0wwZbKyvSliSCe89D5iDsg88v2veKKN/kYNHWf7nRRThCuombOsOLzYG8Th9ERE6wAMSqNjy4flDOVzx+4Z8KSwpEYxd6+49ZXsiPzBSMYI9IuavKLCM4H9gwxft2zaaa3pZrcL/YsIxrQpaPliDSx55ybaywdk1eYIpr8DnRLVJph8EP6/8fgWGrwiOj7j9pUKYP11nYiAak2Mm/FsdhryHLcspg6Qs0yCzUn85eeE6I2npaLlKLGoPUXeJ9gQq6Gba93tzOlLVF0UDfet7pqib/Z9NW/1PAZhztHn7Ps1oxs2QwODOgAgN++ec4EI2lrnRijWgvqbMIP0KLUlEHCzCfWfaJXW5rNXO9XkcQOe3b9Sy3lmD1klIzuuqwL+tfVJ8t4lN8JQ8RKTN6vv4k4C492RivB9tMXsb79aXiRTgC25CX9Unz1SM5BGPH1tCg787RnfwaMTGLire0DwM=
+  file: build/cspace
+  on:
+    tags: true
