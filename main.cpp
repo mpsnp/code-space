@@ -1,6 +1,8 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string>
+#include <tclap/CmdLine.h>
 
 static void error_callback(int error, const char *description) {
     fputs(description, stderr);
@@ -11,16 +13,38 @@ static void key_callback(GLFWwindow *window, int key, int scancode, int action, 
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
-int main(void) {
+int main(int argc, char **argv) {
+
+    TCLAP::CmdLine cmd("Space Code --- source code visualisation tool", ' ', "0.1");
+    TCLAP::SwitchArg fullScreenArg("f", "fullscreen", "Open in full screen window", cmd);
+    TCLAP::SwitchArg autosizeArg("", "autosize", "Use current resolution", cmd);
+    TCLAP::ValueArg<int> widthArg("W", "width", "Width of viewport", false, 640, "int", cmd);
+    TCLAP::ValueArg<int> heightArg("H", "height", "Height of viewport", false, 480, "int", cmd);
+    cmd.parse(argc, (const char *const *) argv);
+
+    // Init GLFW
     GLFWwindow *window;
     glfwSetErrorCallback(error_callback);
-    if (!glfwInit())
+    if (!glfwInit()) {
         exit(EXIT_FAILURE);
-    window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
+    }
+
+    // Create window
+    GLFWmonitor *monitor = glfwGetPrimaryMonitor();
+    bool fullScreen = fullScreenArg.getValue();
+    int width = widthArg.getValue();
+    int height = heightArg.getValue();
+    if (autosizeArg.getValue()) {
+        const GLFWvidmode *mode = glfwGetVideoMode(monitor);
+        width = mode->width;
+        height = mode->height;
+    }
+    window = glfwCreateWindow(width, height, "Simple example", fullScreen ? monitor : NULL, NULL);
     if (!window) {
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
+
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
     glfwSetKeyCallback(window, key_callback);
