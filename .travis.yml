@@ -28,3 +28,5 @@ deploy:
   file_glob: true
   on:
     tags: true
+notifications:
+  slack: codespace-team:6QYWMMBlmXYKLjR2GjQimUDo
