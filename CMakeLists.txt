@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 include_directories(${GLFW_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} ${TCLAP_INCLUDE_DIR})
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp src/render/CRenderer.cpp src/render/CRenderer.h src/coordinator/CServiceCoordinator.cpp src/coordinator/CServiceCoordinator.h src/IServiceCoordinator.h src/IRenderer.h src/IServiceCoordinator.cpp)
 add_executable(cspace ${SOURCE_FILES})
 
 target_link_libraries(cspace ${GLFW_LIBRARIES} ${OPENGL_LIBRARIES})
