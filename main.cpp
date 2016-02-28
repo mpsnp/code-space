@@ -4,11 +4,11 @@
 #include <string>
 #include <tclap/CmdLine.h>
 
-static void errorCallback(int error, const char *description) {
+static void error_callback(int error, const char *description) {
     fputs(description, stderr);
 }
 
-static void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
+static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 
     // Init GLFW
     GLFWwindow *window;
-    glfwSetErrorCallback(errorCallback);
+    glfwSetErrorCallback(error_callback);
     if (!glfwInit()) {
         exit(EXIT_FAILURE);
     }
@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
     // Start drawing loop
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
-    glfwSetKeyCallback(window, keyCallback);
+    glfwSetKeyCallback(window, key_callback);
     mainLoop(window);
     glfwDestroyWindow(window);
     glfwTerminate();
